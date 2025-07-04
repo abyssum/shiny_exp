@@ -13,10 +13,11 @@ temp_years = temperatures['Year'].unique()
 temp_year_min = temp_years.min()
 temp_year_max = temp_years.max()
 
+# CSS defs
+font_style = 'font-wight: 100'
+
 app_ui = ui.page_fluid(
-    ui.h2("Hello Shiny!"),
-    ui.input_slider("n", "N", 0, 100, 20),
-    ui.output_text_verbatim("txt"),
+    ui.h2("Climate Change", style=font_style),
 )
 
 
