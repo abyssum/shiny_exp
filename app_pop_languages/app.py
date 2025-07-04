@@ -1,8 +1,9 @@
 # %% Package import
-from shiny import App, render, ui
+from shiny import App, render, ui, reactive
 import pandas as pd
 import numpy as np
 from pathlib import Path
+from plotnine import ggplot, aes, geom_line, theme, element_text, labs
 
 # %% Data prep
 languages = pd.read_csv(Path(__file__).parent /'MostPopularProgrammingLanguages.csv')
@@ -39,19 +40,40 @@ app_ui = ui.page_fluid(
                                 end=data_range_end),
         ),
         ui.panel_main(
-            ui.output_plot("plottimeseries"),
+            ui.output_plot("plotTimeseries"),
         )
     ),
 )
 
 
 def server(input, output, session):
+    
+    @reactive.Calc
+    def lang_filt():
+        data_selected_start = pd.to_datetime(input.dateRange()[0])
+        data_selected_end = pd.to_datetime(input.dateRange()[1])
+        lang_filt = languages_long.loc[(languages_long['language'].isin(list(input.language()))) &
+                                       (languages_long['dateTime'] >= data_selected_start) &
+                                       (languages_long['dateTime'] <= data_selected_end)].reset_index(drop=True)
+        return lang_filt
+
     @output
-    @render.text
-    def txt():
-        return f"n*2 is {input.n() * 2}"
+    @render.plot
+    def plotTimeseries():
+        g = ggplot(lang_filt()) + aes(x = 'dateTime',
+                                    y = 'popularity',
+                                    color = 'language') + geom_line() + theme(
+                                        axis_text_x=element_text(
+                                            rotation=90,
+                                            hjust=1
+                                        )
+                                    ) + labs(
+                                        x='Date',
+                                        y='Popularity [%]',
+                                        title='Language Popularity over Time'
+                                    )
+        return g
 
 
 app = App(app_ui, server)
 
-# %%
