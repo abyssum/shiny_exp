@@ -23,11 +23,25 @@ data_range_end = np.max(languages_long['dateTime'])
 language_names = languages_long['language'].unique()
 language_names_dict = {l:l for l in language_names}
 
-# %%
+# %% Front-end
 app_ui = ui.page_fluid(
-    ui.h2("Hello Shiny!"),
-    ui.input_slider("n", "N", 0, 100, 20),
-    ui.output_text_verbatim("txt"),
+    ui.panel_title("Most Popular Proggramming Languages"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_selectize(id="language",
+                            label="Languages",
+                            choices=language_names_dict,
+                            selected='Python',
+                            multiple=2),
+            ui.input_date_range(id='dateRange',
+                                label='Date Range',
+                                start=data_range_start,
+                                end=data_range_end),
+        ),
+        ui.panel_main(
+            ui.output_plot("plottimeseries"),
+        )
+    ),
 )
 
 
