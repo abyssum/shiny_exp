@@ -69,7 +69,16 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
-    pass
+    map = L.Map(center=(0, 0), zoom = 1)
+    # Add distance scale
+    map.add_control(L.leaflet.ScaleControl(position='bottomleft'))
+    register_widget('map', map)
+    
+    # Update map's zoom attribute when year changes - reactive effect
+    @reactive.Effect
+    def _():
+        layer = plot_world(temp=temperatures, year=input.year())
+        map.add_layer(layer)
     
 
 # Specify dir for additional static content
