@@ -38,7 +38,7 @@ app_ui = ui.page_fluid(
     ui.br(),
     ui.row(
         ui.column(6, ui.h5("Imprint", style =font_style)),
-        ui.column(6, ui.p(f"Learn how this app is developed and deployed in my course:", style=font_style))
+        ui.column(6, ui.p(f"You can also visit for more info:", style=font_style))
     ),
     ui.row(
         ui.column(6, ui.row(
@@ -62,7 +62,7 @@ app_ui = ui.page_fluid(
                 ),
                   
                   ),
-        ui.column(6, ui.a(ui.img(src="course_logo_300x169.png"), href="https://www.udemy.com"), style="text-align:center;")
+        ui.column(6, ui.a(ui.img(src="genevia_1.jpeg"), href="https://www.geneviatechnologies.com"), style="text-align:center;")
     ), 
     ui.p("Data Source: Sevgi Sy. Temperature Change, 2022", ui.a("Kaggle Dataset", href= "https://www.kaggle.com/datasets/sevgisarac/temperature-change"), ", ",ui.a("License: Attribution 3.0 IGO (CC BY 3.0 IGO)", href="https://creativecommons.org/licenses/by/3.0/igo/"), style = font_style),
     style="background-color:#fff"
