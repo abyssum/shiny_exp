@@ -92,6 +92,11 @@ def server(input, output, session):
         g = plot_country(temp=temperatures, country=input.country(), year=input.year())
         return g
     
+    @output
+    @render.ui
+    def color_map():
+        img = ui.img(src='colormap.png')
+        return img
     
     
 
