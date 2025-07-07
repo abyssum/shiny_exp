@@ -82,10 +82,16 @@ def server(input, output, session):
     
     @output
     @render.plot
-    def graph_country():
+    async def graph_country():
+        with ui.Progress(min=1, max=15) as p:
+            p.set(message='Calculation in progress',
+                  detail='Please Wait ...')
+            for i in range(1, 15):
+                p.set(i, message='Computing')
+                await sleep(0.1)
         g = plot_country(temp=temperatures, country=input.country(), year=input.year())
         return g
-        
+    
     
     
 
