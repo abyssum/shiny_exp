@@ -80,6 +80,14 @@ def server(input, output, session):
         layer = plot_world(temp=temperatures, year=input.year())
         map.add_layer(layer)
     
+    @output
+    @render.plot
+    def graph_country():
+        g = plot_country(temp=temperatures, country=input.country(), year=input.year())
+        return g
+        
+    
+    
 
 # Specify dir for additional static content
 www_dir = Path(__file__).parent / "www"
