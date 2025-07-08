@@ -63,8 +63,9 @@ app_ui = ui.page_fluid(
                   
                   ),
         ui.column(6, ui.a(ui.img(src="genevia_1.jpeg"), href="https://www.geneviatechnologies.com"), style="text-align:center;"),
-    ), style='background-color: #fff', # Change background color
-    # ui.p("Data Source: Sevgi Sy. Temperature Change, 2022", ui.a("Kaggle Dataset", href= "https://www.kaggle.com/datasets/sevgisarac/temperature-change"), ", ",ui.a("License: Attribution 3.0 IGO (CC BY 3.0 IGO)", href="https://creativecommons.org/licenses/by/3.0/igo/"), style = font_style)
+    ),
+    ui.p("Data Source: Sevgi Sy. Temperature Change, 2022", ui.a("Kaggle Dataset", href= "https://www.kaggle.com/datasets/sevgisarac/temperature-change"), ", ",ui.a("License: Attribution 3.0 IGO (CC BY 3.0 IGO)", href="https://creativecommons.org/licenses/by/3.0/igo/"), style = font_style),
+    style='background-color: #fff', # Change background color
 )
 
 
