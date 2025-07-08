@@ -20,7 +20,7 @@ temp_year_max = temp_years.max()
 font_style = "font-weight: 100"
 
 app_ui = ui.page_fluid(
-    ui.h2("Climate Change", style = font_style),
+    ui.h2("Template", style = font_style),
     ui.row(
         ui.column(6, ui.input_select(id="country", label="Choose a country", choices=countries)),
         ui.column(6, 
